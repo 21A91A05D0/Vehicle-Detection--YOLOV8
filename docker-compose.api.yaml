@@ -1,0 +1,29 @@
+
+
+services:
+  vehicle-yolov8-api:
+    container_name: vehicle-yolov8-api
+    image: praveen/vehicle-detection-api:latest
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 7000:7000
+    expose:
+      - 7000
+    environment:
+      - PYTHONPATH="/tmp/vehicle-detection-yolov8-main/src"
+    volumes:
+      - ./:/tmp/vehicle-detection-yolov8-main
+      - /etc/localtime:/etc/localtime:ro
+    command: |
+      python /tmp/vehicle-detection-yolov8-main/src/main.py
+          --engine_path /tmp/last.onnx 
+          --categories car pedestrian cyclist
+          --provider cpu
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
