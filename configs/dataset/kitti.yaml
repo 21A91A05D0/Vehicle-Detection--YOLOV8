@@ -1,0 +1,12 @@
+# KITTI YOLOv8 training config
+
+# Dataset & configs path
+path: "D:/tmp/vehicle-detection-yolov8-main/data/kitti"
+train: "D:/tmp/vehicle-detection-yolov8-main/data/kitti/yolo_train.txt"
+val: "D:/tmp/vehicle-detection-yolov8-main/data/kitti/yolo_val.txt"
+
+# Classes
+names:
+  0: car
+  1: pedestrian
+  2: cyclist
