@@ -1,0 +1,24 @@
+# usage: docker build -f dockerfile.api -t ruhyadi/vehicle-detection-api:latest .
+FROM python:3.10.13-slim
+
+# Install python dependencies
+COPY ./requirements-api.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r /tmp/requirements.txt
+RUN rm /tmp/requirements.txt
+
+# set working directory
+WORKDIR /tmp/vehicle-detection-yolov8-main/
+
+# Dockerfile example
+COPY ./vehicle-detection-yolov8-main /tmp/vehicle-detection-yolov8-main
+# Dockerfile example
+
+# Copy the source code to /tmp/src/ inside the container
+COPY ./src /tmp/vehicle-detection-yolov8-main/src
+ENV PYTHONPATH="/src"
+
+EXPOSE 7000
+
+# entrypoint
+CMD ["bash"]
