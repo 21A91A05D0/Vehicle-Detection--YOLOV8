@@ -19,7 +19,7 @@ ultralytics==8.0.* # ultralytics yolov8
 # torch==2.0.0 # PyTorch
 # torchvision==0.15.1 # PyTorch vision
 setuptools
-disutils
+distutils
 # Image processing
 numpy==1.23.5
 Pillow==10.0.0 # python image library
